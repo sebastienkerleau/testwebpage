@@ -1,0 +1,43 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+.circle {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: black;
+}
+
+.radius {
+    position: absolute;
+    width: 2px;
+    height: 100px;
+    background-color: red;
+    top: 0;
+    left: 50%;
+    transform-origin: bottom;
+    transform: translateX(-50%);
+    cursor: pointer;
+}
+
+.radius::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 12px solid red;
+    top: -12px; /* Adjusted to position arrowhead correctly */
+    left: 50%;
+    transform-origin: bottom;
+    transform: translateX(-50%);
+    cursor: pointer;
+}
