@@ -34,7 +34,7 @@ body {
     height: 0;
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;
-    border-bottom: 12px solid red;
+    border-bottom: 12px solid black;
     top: -12px; /* Adjusted to position arrowhead correctly */
     left: 50%;
     transform-origin: bottom;
