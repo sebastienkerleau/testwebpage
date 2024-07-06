@@ -56,7 +56,7 @@ circles.forEach(circle => {
             const currentAngle = Math.atan2(event.clientY - centerY, event.clientX - centerX);
             const angle = currentAngle - initialAngle;
 
-            radius.style.transform = translateX(-50%) rotate(${angle}rad);
+            radius.style.transform = `translateX(-50%) rotate(${angle}rad)`;
             radius.style.transformOrigin = 'bottom';
 
             // Update arrowhead (pseudo-element) rotation
