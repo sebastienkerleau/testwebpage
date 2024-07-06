@@ -1,6 +1,6 @@
 const circles = document.querySelectorAll('.circle');
 circles.forEach(circle => {
-    const radii = circle.querySelectorAll('.radius');
+    const radii = circle.querySelectorAll('.radius:not(.non-draggable)'); // Select all radii except the non-draggable one
     radii.forEach(radius => {
         let isDragging = false;
         let initialAngle;
