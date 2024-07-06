@@ -9,9 +9,7 @@
   .invisible {
     display: none;
   }
-.non-draggable {
-    background-color: #9c9fec;
-}
+
   
   body {
     margin: 0;
