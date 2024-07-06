@@ -3,7 +3,7 @@ circles.forEach(circle => {
     const radii = circle.querySelectorAll('.radius');
     radii.forEach(radius => {
         let isDragging = false;
-        let initialAngle;
+        let initialAngle = 0; // Initial angle when vertical
         let initialPosition;
 
         // Mouse event listeners
@@ -19,6 +19,14 @@ circles.forEach(circle => {
         function startDragging(e) {
             isDragging = true;
             e.preventDefault(); // Prevent default touch behavior (like scrolling)
+
+            // Reset initial position and angle
+            initialPosition = {
+                x: e.clientX || e.touches[0].clientX,
+                y: e.clientY || e.touches[0].clientY
+            };
+            initialAngle = Math.atan2(initialPosition.y - circle.getBoundingClientRect().top - circle.clientHeight / 2,
+                                      initialPosition.x - circle.getBoundingClientRect().left - circle.clientWidth / 2);
         }
 
         function dragRadius(e) {
@@ -43,24 +51,19 @@ circles.forEach(circle => {
             const centerX = rect.left + rect.width / 2;
             const centerY = rect.top + rect.height / 2;
 
-            // Calculate initial angle on first touch/mouse down
-            if (!initialPosition) {
-                initialPosition = {
-                    x: event.clientX || event.touches[0].clientX,
-                    y: event.clientY || event.touches[0].clientY
-                };
-                initialAngle = Math.atan2(event.clientY - centerY, event.clientX - centerX);
-            }
+            const currentX = event.clientX || event.touches[0].clientX;
+            const currentY = event.clientY || event.touches[0].clientY;
 
-            // Calculate current angle based on initial angle and current touch/mouse position
-            const currentAngle = Math.atan2(event.clientY - centerY, event.clientX - centerX);
-            const angle = currentAngle - initialAngle;
+            // Calculate current angle
+            const currentAngle = Math.atan2(currentY - centerY, currentX - centerX);
+            const angleDifference = currentAngle - initialAngle;
 
-            radius.style.transform = `translateX(-50%) rotate(${angle}rad)`;
+            // Update the rotation of the radius
+            radius.style.transform = `translateX(-50%) rotate(${angleDifference}rad)`;
             radius.style.transformOrigin = 'bottom';
 
-            // Update arrowhead (pseudo-element) rotation
-            radius.style.setProperty('--angle', angle + 'rad');
+            // You can now use angleDifference as the angle between the initial and current position
+            console.log(`Angle difference: ${angleDifference * (180 / Math.PI)} degrees`);
         }
     });
 });
