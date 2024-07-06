@@ -6,6 +6,9 @@ circles.forEach(circle => {
         let initialAngle = 0; // Initial angle when vertical
         let initialPosition;
 
+        // Reference to the angle display element
+        const angleDisplay = document.getElementById('angleDisplay');
+
         // Mouse event listeners
         radius.addEventListener('mousedown', startDragging);
         document.addEventListener('mousemove', dragRadius);
@@ -61,6 +64,9 @@ circles.forEach(circle => {
             // Update the rotation of the radius
             radius.style.transform = `translateX(-50%) rotate(${angleDifference}rad)`;
             radius.style.transformOrigin = 'bottom';
+
+            // Update angle display
+            angleDisplay.textContent = `Angle: ${angleDifference.toFixed(2)} radians`;
 
             // You can now use angleDifference as the angle between the initial and current position
             console.log(`Angle difference: ${angleDifference * (180 / Math.PI)} degrees`);
